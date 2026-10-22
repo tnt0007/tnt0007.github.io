@@ -184,7 +184,7 @@ html[dir=rtl] .rail .fill{background:linear-gradient(270deg,var(--blue),var(--mo
 /* ── الحلول | solutions ── */
 .sol-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:46px}
 .sol{position:relative;border-radius:var(--r);overflow:hidden;min-height:400px;display:flex;align-items:flex-end;border:1px solid var(--line);isolation:isolate}
-.sol img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.1s cubic-bezier(.2,.8,.2,1),filter .6s;filter:saturate(.85)}
+.sol img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.1s cubic-bezier(.2,.8,.2,1)}
 .sol::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,transparent 25%,rgba(6,11,22,.95) 90%);transition:background .5s}
 .sol:hover img{transform:scale(1.1);filter:saturate(1.1)}
 .sol:hover::after{background:linear-gradient(180deg,rgba(255,122,26,.05) 0%,rgba(6,11,22,.97) 80%)}
@@ -214,8 +214,8 @@ html[dir=rtl] .std li:hover{transform:translateX(-6px)}
 .gallery{overflow:hidden;padding:20px 0 0}
 .gal-track{display:flex;gap:16px;width:max-content;animation:gal 60s linear infinite;direction:ltr}
 .gallery:hover .gal-track{animation-play-state:paused}
-.gal-track img{height:260px;width:auto;aspect-ratio:4/3;object-fit:cover;border-radius:16px;border:1px solid var(--line);filter:grayscale(.35);transition:filter .4s,transform .4s}
-.gal-track img:hover{filter:none;transform:scale(1.03)}
+.gal-track img{height:260px;width:auto;aspect-ratio:4/3;object-fit:cover;border-radius:16px;border:1px solid var(--line);transition:transform .4s}
+.gal-track img:hover{transform:scale(1.03)}
 @keyframes gal{to{transform:translateX(-50%)}}
 
 /* ── تواصل | contact ── */
