@@ -211,7 +211,7 @@ html[dir=rtl] .std li:hover{transform:translateX(-6px)}
 .q-media img:nth-child(2){margin-top:60px}
 
 /* ── المعرض | gallery ── */
-.gallery{overflow:hidden;padding:20px 0 0}
+.gallery{overflow:hidden;padding:20px 0 0;direction:ltr}  /* RTL كان يبدأ الشريط من اليمين فيخرج من الشاشة | RTL anchored the track right and slid it off-screen */
 .gal-track{display:flex;gap:16px;width:max-content;animation:gal 60s linear infinite;direction:ltr}
 .gallery:hover .gal-track{animation-play-state:paused}
 .gal-track img{height:260px;width:auto;aspect-ratio:4/3;object-fit:cover;border-radius:16px;border:1px solid var(--line);transition:transform .4s}
