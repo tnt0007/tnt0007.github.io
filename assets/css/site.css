@@ -216,6 +216,7 @@ html[dir=rtl] .std li:hover{transform:translateX(-6px)}
 .gallery:hover .gal-track{animation-play-state:paused}
 .gal-track img{height:260px;width:auto;aspect-ratio:4/3;object-fit:cover;border-radius:16px;border:1px solid var(--line);transition:transform .4s}
 .gal-track img:hover{transform:scale(1.03)}
+.gal-track img.tall{aspect-ratio:3/4}  /* صورة طولية تُعرض كاملة (26-10) | a portrait photo shown whole */
 @keyframes gal{to{transform:translateX(-50%)}}
 
 /* ── تواصل | contact ── */
