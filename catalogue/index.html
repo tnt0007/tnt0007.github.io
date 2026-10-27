@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>كتالوج المقاطع | Profiles Catalogue — Al Hamad Aluminium</title>
+<meta name="description" content="كتالوج مقاطع مصنع الحمد لسحب الألمنيوم: ابحث برقم القطاع أو بالوزن كجم/م، وتصفّح الأقسام: مواسير، أبواب ونوافذ، درابزين، مطابخ، واجهات. Al Hamad Aluminium Extrusions profiles catalogue — search by die number or kg/m.">
+<meta name="theme-color" content="#070d1a">
+<meta name="color-scheme" content="dark only">
+<link rel="canonical" href="https://alhamadx.ae/catalogue/">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/icon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="catalogue.css">
+</head>
+<body>
+<header class="bar">
+  <a class="brand" href="../" aria-label="Al Hamad">
+    <img src="../assets/img/emblem.png" alt="" width="38" height="38">
+    <span><b class="ar">مصنع الحمد لسحب الألمنيوم</b><b class="en">AL HAMAD ALUMINIUM</b>
+      <small class="ar">كتالوج المقاطع</small><small class="en">PROFILES CATALOGUE</small></span>
+  </a>
+  <div class="bar-act">
+    <button class="pill" id="lang" type="button"><span class="ar">EN</span><span class="en">ع</span></button>
+    <a class="pill hot" id="pdfBtn" href="#" download><span class="ar">تحميل PDF</span><span class="en">Download PDF</span> <small id="pdfMb"></small></a>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero">
+    <h1><span class="ar">كتالوج المقاطع</span><span class="en">Profiles Catalogue</span></h1>
+    <p class="mut"><span class="ar">ابحث برقم القطاع أو بالوزن (كجم/م)، أو تصفّح الأقسام.</span>
+      <span class="en">Search by profile number or weight (kg/m), or browse the sections.</span></p>
+    <div class="search">
+      <input id="q" type="search" inputmode="decimal" autocomplete="off"
+             placeholder="مثال: 1733 أو 1.55 | e.g. 1733 or 1.55" aria-label="Search">
+    </div>
+    <p class="mut small" id="stats"></p>
+  </section>
+
+  <section id="results" class="results" hidden></section>
+  <section id="home" class="grid secs"></section>
+  <section id="section" hidden></section>
+  <section id="viewer" hidden></section>
+  <p class="mut small foot" id="built"></p>
+</main>
+
+<script src="catalogue.js"></script>
+</body>
+</html>
