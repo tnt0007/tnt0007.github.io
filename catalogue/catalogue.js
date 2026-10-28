@@ -113,7 +113,7 @@
     var s = secBy[pg.s];
     var here = profsOnPage[p] || [], mark = "";
     here.forEach(function (x) {
-      if (x.no === hl) {
+      if (x.no === hl && x.b) {
         var b = x.b, padX = 0.012, padY = 0.006;
         mark = '<div class="mark" style="left:' + ((b[0] - padX) * 100) + "%;top:" + ((b[1] - padY) * 100) + "%;width:" +
           ((b[2] - b[0] + 2 * padX) * 100) + "%;height:" + ((b[3] - b[1] + 2 * padY) * 100) + '%"></div>';
@@ -129,18 +129,20 @@
       '<div class="view"><div class="sheet" id="sheet" style="aspect-ratio:1/' + D.aspect + '"><img alt="PAGE ' + esc(pg.l || p) + '" src="' + img("pages", p) + '">' + mark + "</div>" +
       '<aside class="side"><div class="nav2"><button id="prev" type="button"' + (p <= 1 ? " disabled" : "") + ">" + t("→ السابقة", "← Prev") +
       '</button><button id="next" type="button"' + (p >= D.pages.length ? " disabled" : "") + ">" + t("التالية ←", "Next →") + "</button></div>";
-    if (hp) h += '<div class="box"><div class="lbl">' + t("القطاع", "Profile") + '</div><div class="big">' + esc(hl) +
-      '</div><div class="lbl">' + t("الوزن", "Weight") + '</div><div class="big">' + esc(hp.kg) + ' <small class="mut small">kg/m</small></div></div>';
+    if (hp) h += '<div class="box"><div class="lbl">' + t("القطاع", "Profile") + '</div><div class="big">' + esc(hl) + "</div>" +
+      (hp.kg ? '<div class="lbl">' + t("الوزن", "Weight") + '</div><div class="big">' + esc(hp.kg) + ' <small class="mut small">kg/m</small></div>' : "") + "</div>";
     if (here.length) h += '<div class="box"><div class="lbl">' + t("قطاعات هذه الصفحة", "Profiles on this page") + '</div><div class="chips">' +
-      here.map(function (x) { return '<a class="chip' + (x.no === hl ? " on" : "") + '" href="#p=' + p + "&h=" + x.no + '"><bdi dir="ltr">' + x.no + " · " + x.kg + "</bdi></a>"; }).join("") + "</div></div>";
+      here.map(function (x) { return '<a class="chip' + (x.no === hl ? " on" : "") + '" href="#p=' + p + "&h=" + x.no + '"><bdi dir="ltr">' + x.no + (x.kg ? " · " + x.kg : "") + "</bdi></a>"; }).join("") + "</div></div>";
     h += '<a class="wa" target="_blank" rel="noopener" href="https://wa.me/' + WHATSAPP + "?text=" + encodeURIComponent(msg) + '">' + t("استفسر عبر واتساب", "Ask on WhatsApp") + "</a>";
     h += '<a class="pill" style="justify-content:center" target="_blank" rel="noopener" href="' + D.pdf + "?v=" + V + "#page=" + p + '">' + t("افتح الصفحة في PDF", "Open this page in the PDF") + "</a></aside></div>";
     $("viewer").innerHTML = h;
     $("prev").onclick = function () { go(p - 1); };
     $("next").onclick = function () { go(p + 1); };
+    // ينزل إلى الصفحة نفسها لا إلى أعلى الموقع: البحث فوقها يخفيها على الجوال (أمر 28-10)
+    // Scroll to the page itself, not the top of the site: the search box above hid it on phones.
     var m = $("viewer").querySelector(".mark");
     if (m) setTimeout(function () { m.scrollIntoView({ block: "center", behavior: "smooth" }); }, 250);
-    else window.scrollTo(0, 0);
+    else setTimeout(function () { $("viewer").scrollIntoView({ block: "start", behavior: "smooth" }); }, 50);
     // السحب على الجوال | swipe on phones
     var sx = null, sh = $("sheet");
     sh.addEventListener("touchstart", function (e) { sx = e.touches.length === 1 ? e.touches[0].clientX : null; }, { passive: true });
@@ -187,7 +189,7 @@
     hits.slice(0, 60).forEach(function (p) {
       var a = p.at[0], s = secBy[a.s], pg = pageBy[a.p];
       h += '<a class="card" href="#p=' + a.p + "&h=" + p.no + '"><div class="th"><img loading="lazy" alt="" src="' + img("thumbs", a.p) + '"></div>' +
-        '<div class="tx"><span class="no">' + p.no + "</span><small><bdi dir=\"ltr\">" + p.kg + " kg/m · PAGE " + esc(pg.l || a.p) + "</bdi></small><small>" + secName(s) + "</small></div></a>";
+        '<div class="tx"><span class="no">' + p.no + "</span><small><bdi dir=\"ltr\">" + (p.kg ? p.kg + " kg/m · " : "") + "PAGE " + esc(pg.l || a.p) + "</bdi></small><small>" + secName(s) + "</small></div></a>";
     });
     box.innerHTML = h + "</div>";
     box.hidden = false;
